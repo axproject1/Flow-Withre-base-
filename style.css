@@ -1,0 +1,746 @@
+/* ===== GENERAL ===== */
+/* Estilos básicos de toda la página */
+body {
+  margin: 0; /* Quita márgenes por defecto */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía principal */
+  background: linear-gradient(135deg, #0f0f0f, #1e1e1e, #2b2b2b); /* Fondo degradado oscuro */
+  color: #f5f0e1; /* Color de texto principal */
+  line-height: 1.6; /* Espaciado entre líneas */
+}
+
+a {
+  text-decoration: none; /* Quita subrayado */
+  color: inherit; /* Hereda el color del texto padre */
+}
+
+a:hover {
+  color: #ffb703; /* Color al pasar el cursor */
+}
+
+/* ===== EFECTO ACRÍLICO / CRISTAL ===== */
+/* Clases para dar efecto de vidrio translúcido */
+.acrylic {
+  backdrop-filter: blur(12px) saturate(180%); /* Desenfoque y saturación */
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.08); /* Fondo semitransparente */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borde suave */
+  border-radius: 12px; /* Esquinas redondeadas */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Sombra */
+}
+
+/* ===== PRELOADER ===== */
+/* Estilos de la pantalla de carga */
+#preloader {
+  position: fixed; /* Fija el preloader sobre todo el contenido */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #2e2e2e); /* Fondo degradado oscuro */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrado vertical */
+  align-items: center; /* Centrado horizontal */
+  z-index: 9999; /* Siempre encima */
+  text-align: center;
+}
+
+.preloader-logo {
+  width: 120px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 12px #ff3c00aa); /* Sombra brillante */
+}
+
+.loader-line {
+  width: 250px;
+  height: 8px;
+  background: rgba(255,255,255,0.15); /* Barra de fondo */
+  border-radius: 20px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-fill {
+  width: 0%; /* Se incrementa con JS para animar la carga */
+  height: 100%;
+  background: linear-gradient(90deg, #ff3c00, #ff7200, #ffb703); /* Degradado animado */
+  border-radius: 20px;
+  transition: width 0.4s ease; /* Transición suave al crecer */
+}
+
+#preloader p {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+#access-btn {
+  padding: 12px 28px;
+  background: linear-gradient(90deg, #ff3c00, #ff7200); /* Botón degradado */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#access-btn:hover {
+  background: linear-gradient(90deg, #ff7200, #ffb703);
+  transform: scale(1.05); /* Efecto de crecimiento al pasar el cursor */
+}
+
+/* ===== NAVBAR ===== */
+/* Encabezado con logo y menú */
+header {
+  background: rgba(230, 57, 70, 0.9); /* Fondo semitransparente rojo */
+  backdrop-filter: blur(10px); /* Desenfoque de fondo */
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between; /* Logo a la izquierda, menú a la derecha */
+  align-items: center;
+  position: sticky; /* Se queda fijo al hacer scroll */
+  top: 0;
+  z-index: 99;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4); /* Sombra debajo del header */
+}
+
+header img {
+  width: 60px; /* Tamaño del logo */
+  margin-left: 10px;           /* Mueve a la derecha */
+  transform: translateY(3px);  /* Ajuste fino vertical */
+}
+
+nav {
+  display: flex;
+  gap: 15px; /* Espacio entre enlaces */
+}
+
+nav a {
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s ease; /* Suaviza cambio de color */
+}
+
+nav a:hover {
+  color: #ffb703; /* Color naranja al pasar cursor */
+
+}
+
+.brand {
+  display: flex;         /* Coloca logo y texto en fila */
+  align-items: center;   /* Centra verticalmente ambos */
+  gap: 10px;             /* Espacio entre el logo y el texto */
+}
+
+.brand img {
+  width: 60px;           /* Ajusta el tamaño del logo */
+  height: auto;
+}
+
+.brand h1 {
+  margin: 0;             /* Elimina margen por defecto */
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+
+
+/* Botón hamburguesa */
+.menu-toggle {
+  display: none; /* Solo se muestra en móvil */
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* ===== VISTA MÓVIL ===== */
+@media (max-width: 768px) {
+  nav {
+    display: none; /* Menú oculto por defecto */
+    flex-direction: column;
+    background: rgba(230, 57, 70, 0.95); /* Fondo del menú */
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    width: 220px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  }
+
+  nav.active {
+    display: flex; /* Se muestra al hacer clic en hamburguesa */
+  }
+
+  .menu-toggle {
+    display: block; /* Se muestra el botón hamburguesa */
+  }
+}
+
+/* ===== HERO ===== */
+/* Sección de bienvenida */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #141414, #1e1e1e, #252525); /* Fondo degradado oscuro */
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("https://www.transparenttextures.com/patterns/cubes.png"); /* Textura de fondo sutil */
+  opacity: 0.05;
+}
+
+.hero-logo {
+  width: 200px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 15px #ff3c00aa); /* Sombra brillante del logo */
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  color: #ffb703; /* Color dorado */
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6); /* Sombra del texto */
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.9; /* Suaviza el texto */
+}
+
+/* ===== CATEGORÍAS ===== */
+/* Sección de tarjetas de categorías */
+.categories {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #222, #2d2d2d, #333);
+  text-align: center;
+  position: relative;
+}
+
+.categories::before {
+  content: "";
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: url("https://www.transparenttextures.com/patterns/black-linen.png"); /* Textura ligera */
+  opacity: 0.06;
+}
+
+.categories h2 {
+  color: #4caf50; /* Verde destacado */
+  margin-bottom: 40px;
+  font-size: 2rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Grid flexible */
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cat-card {
+  display: block;
+  background: rgba(255,255,255,0.06); /* Fondo semi-transparente */
+  backdrop-filter: blur(10px); /* Efecto acrílico */
+  padding: 25px;
+  border-radius: 15px;
+  transition: transform 0.3s ease, background 0.3s ease; /* Animaciones al pasar cursor */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  color: inherit;
+}
+
+.cat-card:hover {
+  transform: translateY(-6px); /* Levanta la tarjeta */
+  background: rgba(255,255,255,0.12); /* Fondo más brillante */
+}
+
+.cat-icon {
+  font-size: 2.5rem; /* Tamaño del emoji/icono */
+  display: block;
+  margin-bottom: 10px;
+}
+
+.cat-card h3 {
+  color: #ffb703; /* Título dorado */
+  margin: 10px 0;
+  font-size: 1.3rem;
+}
+
+.cat-card p {
+  font-size: 0.95rem;
+  color: #ddd; /* Texto gris claro */
+}
+
+/* ===== FOOTER ===== */
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* FORMULARIO A LA IZQUIERDA */
+.contact-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* FORMULARIO PEQUEÑO */
+.footer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-form input,
+.footer-form textarea {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  resize: none;
+}
+
+.footer-form button {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background: #ffb703;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.footer-form button:hover {
+  transform: scale(1.05);
+}
+
+/* LOGO A LA DERECHA */
+.logo-section {
+  flex: 0 0 auto;
+}
+
+.footer-logo {
+  width: 160px;
+  height: auto;
+  display: block;
+}
+
+/* REDES SOCIALES */
+.social-section {
+  flex: 0 0 auto;
+}
+
+.social-icons a {
+  margin: 0 6px;
+  font-size: 1.5rem;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+}
+
+/* TEXTO DE DERECHOS DEBAJO DE ICONOS */
+.footer-text {
+  font-size: 0.85rem;
+  margin-top: 12px;
+  color: #fff;
+}
+
+.footer-text a {
+  color: #ffb703;
+  text-decoration: none;
+}
+
+.footer-text a:hover {
+  text-decoration: underline;
+}
+/* PIE DE PÁGINA CENTRADO */
+.footer-bottom {
+  text-align: center;
+  padding: 15px 20px;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  font-size: 0.85rem;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2); /* Aumenta icono al pasar cursor */
+}
+.social-icons a:nth-child(1):hover { color: #E1306C; } /* Instagram rosa */
+.social-icons a:nth-child(2):hover { color: #00acee; } /* Twitter celeste */
+.social-icons a:nth-child(3):hover { color: #0026ff; }  /* Facebook azul */
+.social-icons a:nth-child(4):hover { color: #a80e0e;  } /*  YouTube rojo */  
+.social-icons a:nth-child(5):hover { color: #00ff9d;  } /* TikTok Turquesa */
+.social-icons a:nth-child(6):hover { color: #00b70c;  } /* Spotify verde */ 
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-section,
+  .logo-section,
+  .social-section {
+    min-width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .logo-section, .footer-right {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  .contacto-form-section input,
+  .contacto-form-section textarea,
+  .contacto-form-section button {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo-section, .footer-right {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  .contacto-form-section input,
+  .contacto-form-section textarea {
+    font-size: 1rem;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-right {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  .contacto-form-section {
+    width: 100%;
+    text-align: center;
+  }
+  .contacto-form-section input,
+  .contacto-form-section textarea {
+    font-size: 1rem;
+  }
+}
+    
+
+/* ===== BOTONES DE ACCESO ===== */
+.btn-discord, .btn-register {
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  margin-left: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-discord:hover {
+  background: #5865F2;
+  color: #fff;
+}
+
+.btn-register:hover {
+  background: #ffb703;
+  color: #000;
+}
+
+/* Botones en el hero */
+.hero-buttons {
+  margin-top: 20px;
+}
+
+.hero-buttons a {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.btn-discord-hero {
+  background: #5865F2;
+  color: #fff;
+}
+
+.btn-register-hero {
+  background: #ffb703;
+  color: #000;
+}
+
+.hero-buttons a:hover {
+  transform: scale(1.05);
+}
+
+.hero-buttons a {
+  pointer-events: auto; /* debe permitir clicks */
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("https://www.transparenttextures.com/patterns/cubes.png");
+  opacity: 0.05;
+  pointer-events: none; /* 👈 Esto es clave */
+}
+
+
+
+/* ===== PÁGINA DE REGISTRO ===== */
+
+/* Fondo con logo y degradado */
+.registro-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  /* Degradado + Logo centrado */
+  background: linear-gradient(135deg, rgba(15, 15, 15, 0.95), rgba(230, 57, 70, 0.95)),
+              url("/img/logo.png") no-repeat center;
+  background-size: 200px;
+  backdrop-filter: blur(6px); /* Efecto acrílico */
+}
+
+/* Contenedor del formulario */
+.registro-container {
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+
+  /* Acrílico para resaltar el formulario */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Título */
+.registro-container h2 {
+  margin-bottom: 20px;
+  color: #ffb703;
+}
+
+/* Estilos del formulario */
+.registro-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.registro-container input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+.registro-container button {
+  padding: 10px;
+  background: linear-gradient(90deg, #ff3c00, #ffb703);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registro-container button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 183, 3, 0.7);
+}
+
+/* Responsivo: en pantallas pequeñas, logo más chico y contenedor ajustado */
+@media (max-width: 768px) {
+  .registro-body {
+    background-size: 120px;
+    padding: 20px;
+  }
+
+  .registro-container {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+/* Botón de Google */
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.google-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Ícono de Google dentro del botón */
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+
+
+/* ===== SOBRE NOSOTROS ===== */
+.about-section {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px;
+  text-align: center;
+}
+
+.about-title {
+  color: #ffb703;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* ===== SERVICIOS ===== */
+.services-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.services-title {
+  color: #4caf50;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.service-card {
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-icon {
+  font-size: 2rem;
+  color: #ffb703;
+  margin-bottom: 10px;
+}
+
+/* Botón flotante WhatsApp */
+.whatsapp-chat {
+  position: fixed;
+  bottom: 20px;      /* distancia desde abajo */
+  right: 20px;       /* distancia desde la derecha */
+  width: 60px;
+  height: 60px;
+  background-color: #25D366; /* verde WhatsApp */
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 9999;     /* siempre encima */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-chat:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+
+/* ===== CINTA DESPLAZABLE ===== */
+.scrolling-banner {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(90deg, #ff3c00, #ffb703); /* degradado llamativo */
+  color: #fff;
+  font-weight: bold;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.scrolling-banner p {
+  display: inline-block;
+  padding-left: 100%; /* empieza fuera de la pantalla */
+  animation: scroll-text 15s linear infinite;
+}
+
+/* Animación del texto */
+@keyframes scroll-text {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

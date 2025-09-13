@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Flow Withre</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+
+ <!-- ===== PRELOADER ===== -->
+  <div id="preloader">
+    <div class="loader-line">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+
+
+<body class="registro-body">
+  <div class="registro-container acrylic">
+    <h2>Crear Cuenta</h2>
+    <form>
+      <label>Nombre de usuario</label>
+      <input type="text" required>
+
+      <label>Email</label>
+      <input type="email" required>
+
+      <label>Contraseña</label>
+      <input type="password" required>
+
+      <button type="submit">Registrarse</button>
+
+      <!-- Botón de Google -->
+  <button type="button" class="google-btn">
+    <a href="https://accounts.google.com/signin" class="google-btn">
+  <img src="/img/google-icon.svg" alt="Google" class="google-icon">
+  Iniciar con Google
+</a>
+  </button>
+    </form>
+    <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+  </div>
+
+  <!-- ===== PRELOADER JS ===== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const preloader = document.getElementById("preloader");
+      const loaderFill = document.querySelector(".loader-fill");
+      loaderFill.style.width = "100%"; // llenar barra instantáneo
+      setTimeout(() => preloader.style.display = "none", 300);
+    });
+  </script>
+
+
+
+
+</body>
+</html>

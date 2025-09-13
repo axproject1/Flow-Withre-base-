@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Flow Withre</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="registro-body">
+
+  <!-- ===== PRELOADER ===== -->
+  <div id="preloader">
+    <div class="loader-line">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+
+  <!-- ===== CONTENEDOR LOGIN ===== -->
+  <div class="registro-container acrylic">
+    <h2>Iniciar Sesión</h2>
+    <form>
+      <label>Email</label>
+      <input type="email" placeholder="tu@email.com" required>
+
+      <label>Contraseña</label>
+      <input type="password" placeholder="Contraseña" required>
+
+      <button type="submit">Entrar</button>
+
+      <!-- Botón de Google -->
+      <button type="button" class="google-btn">
+        <img src="/img/google-icon.svg" alt="Google" class="google-icon">
+        Iniciar con Google
+      </button>
+    </form>
+    <p>¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+  </div>
+
+  <!-- ===== PRELOADER JS ===== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const preloader = document.getElementById("preloader");
+      const loaderFill = document.querySelector(".loader-fill");
+      loaderFill.style.width = "100%"; // llenar barra instantáneo
+      setTimeout(() => preloader.style.display = "none", 300);
+    });
+  </script>
+
+
+</body>
+</html>
